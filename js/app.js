@@ -30,8 +30,11 @@ function shuffle(array) {
     return array;
 }
 
-// Start Game function to create new HTML 
+// Start Game function to create new HTML
 // Also removes all exisiting classes from cards
+
+//CHANGE TO EVENT LISTENER !!! as per tips
+// deck.addEventListener('click', ... )???
 document.body.onload = startGame();
 
 function startGame() {
@@ -47,6 +50,7 @@ function startGame() {
 }
 
 
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -57,3 +61,9 @@ function startGame() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+
+
+// Restart button function
+const restartButton = document.querySelector('.restart');
+restartButton.addEventListener('click', startGame());
