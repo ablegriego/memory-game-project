@@ -66,4 +66,4 @@ function startGame() {
 
 // Restart button function
 const restartButton = document.querySelector('.restart');
-restartButton.addEventListener('click', startGame());
+restartButton.addEventListener('click', startGame);
