@@ -4,6 +4,10 @@
 let card = document.getElementsByClassName("card");
 let cards = [...card];
 
+// Variables needed for functions
+const deck = document.querySelector('.deck');
+const li = document.querySelector('li');
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -24,6 +28,22 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+// Start Game function to create new HTML 
+// Also removes all exisiting classes from cards
+document.body.onload = startGame();
+
+function startGame() {
+  let openedCards = [];
+  cards = shuffle(cards);
+  for (let i = 0; i < card.length; i++) {
+      deck.innerHTML = "";
+      [].forEach.call(cards, function(item) {
+	 			deck.appendChild(item);
+});
+        cards[i].classList.remove("show", "open", "match");
+    }
 }
 
 
