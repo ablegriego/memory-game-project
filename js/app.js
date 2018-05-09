@@ -3,6 +3,7 @@
  */
 let card = document.getElementsByClassName('card');
 let cards = [...card];
+let shownCards = [];
 
 // Variables needed for functions
 const deck = document.querySelector('.deck');
@@ -38,7 +39,6 @@ function shuffle(array) {
 document.body.onload = startGame();
 
 function startGame() {
-  let openedCards = [];
   cards = shuffle(cards);
   for (let i = 0; i < card.length; i++) {
       deck.innerHTML = "";
@@ -63,18 +63,17 @@ function startGame() {
  */
 
 // Displays card's symbol
- let openCard = function() {
+ let showCard = function() {
    this.classList.toggle('show');
+   // Pushes shown cards to shownCards array
+   shownCards.push(this);
  };
 
  // Loop to add event Listener to each card
  for (var i = 0; i < cards.length; i++) {
    card = cards[i];
-   card.addEventListener('click', openCard);
+   card.addEventListener('click', showCard);
  }
-
-
-
 
 // Restart button function
 const restartButton = document.querySelector('.restart');
