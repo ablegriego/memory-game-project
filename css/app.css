@@ -100,7 +100,9 @@ h1 {
     display: inline-block;
 }
 
-.score-panel .restart {
+.score-panel #restart {
     float: right;
     cursor: pointer;
+    font-size: 30px;
+    border-radius: 0;
 }

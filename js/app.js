@@ -4,6 +4,7 @@
 let card = document.getElementsByClassName('card');
 let cards = [...card];
 let shownCards = [];
+let matchCards = [];
 
 // Variables needed for functions
 const deck = document.querySelector('.deck');
@@ -45,7 +46,7 @@ function startGame() {
       [].forEach.call(cards, function(item) {
 	 			deck.appendChild(item);
 });
-        cards[i].classList.remove('show', 'correct');
+        cards[i].classList.remove('show', 'match');
     }
     //include reset moves, time, star rating???
 }
@@ -62,10 +63,9 @@ function startGame() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-// Displays card's symbol
+// Displays card's symbol and pushes shown cards to shownCards array
  let showCard = function() {
    this.classList.toggle('show');
-   // Pushes shown cards to shownCards array
    shownCards.push(this);
  };
 
@@ -75,6 +75,34 @@ function startGame() {
    card.addEventListener('click', showCard);
  }
 
+
+// Check if shown cards match, push to matchCards array and loop cards to remove class
+if (shownCards.length === 2) {
+  if (shownCards[0].classList.value === shownCards[1].classList.value) {
+    cards[i].classList.add('match');
+    matchCards.push(this);
+  }
+  else {
+    for (let i = 0; i < cards.length; i++) {
+      deck.innerHTML = "";
+      [].forEach.call(cards, function(item) {
+        deck.appendChild(item);
+  });
+    cards[i].classList.remove('show');
+    shownCards.splice(0, 2);
+  }
+}
+}
+
+
+
+
 // Restart button function
-const restartButton = document.querySelector('.restart');
-restartButton.addEventListener('click', startGame);
+function restartGame() {
+  const restartButton = document.getElementsByID('button');
+  restartButton.addEventListener('click', function (e) {
+    startGame();
+});
+}
+
+// Event listeners
