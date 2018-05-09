@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-let card = document.getElementsByClassName("card");
+let card = document.getElementsByClassName('card');
 let cards = [...card];
 
 // Variables needed for functions
@@ -31,7 +31,7 @@ function shuffle(array) {
 }
 
 // Start Game function to create new HTML
-// Also removes all exisiting classes from cards
+// Also removes all existing classes from cards
 
 //CHANGE TO EVENT LISTENER !!! as per tips
 // deck.addEventListener('click', ... )???
@@ -45,10 +45,10 @@ function startGame() {
       [].forEach.call(cards, function(item) {
 	 			deck.appendChild(item);
 });
-        cards[i].classList.remove("show", "open", "match");
+        cards[i].classList.remove('show', 'correct');
     }
+    //include reset moves, time, star rating???
 }
-
 
 
 /*
@@ -61,6 +61,18 @@ function startGame() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+// Displays card's symbol
+ let openCard = function() {
+   this.classList.toggle('show');
+ };
+
+ // Loop to add event Listener to each card
+ for (var i = 0; i < cards.length; i++) {
+   card = cards[i];
+   card.addEventListener('click', openCard);
+ }
+
 
 
 
