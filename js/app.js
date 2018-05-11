@@ -37,7 +37,7 @@ function shuffle(array) {
 }
 
 // Start Game function to create new HTML
-// Also removes all existing classes from cards
+// Also removes all exisiting classes from cards
 
 //CHANGE TO EVENT LISTENER !!! as per tips
 // deck.addEventListener('click', ... )???
@@ -54,6 +54,8 @@ function startGame() {
     }
     //include reset moves, time, star rating???
 }
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
