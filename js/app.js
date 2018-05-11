@@ -10,6 +10,10 @@ let matchCards = [];
 const deck = document.querySelector('.deck');
 const li = document.querySelector('li');
 
+// Variables needed for functions
+const deck = document.querySelector('.deck');
+const li = document.querySelector('li');
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -50,7 +54,6 @@ function startGame() {
     }
     //include reset moves, time, star rating???
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
