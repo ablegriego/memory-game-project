@@ -63,46 +63,30 @@ function startGame() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-// Displays card's symbol and pushes shown cards to shownCards array
- let showCard = function() {
-   this.classList.toggle('show');
-   shownCards.push(this);
- };
-
  // Loop to add event Listener to each card
  for (var i = 0; i < cards.length; i++) {
    card = cards[i];
    card.addEventListener('click', showCard);
  }
 
-
-// Check if shown cards match, push to matchCards array and loop cards to remove class
-if (shownCards.length === 2) {
-  if (shownCards[0].classList.value === shownCards[1].classList.value) {
-    cards[i].classList.add('match');
-    matchCards.push(this);
-  }
-  else {
-    for (let i = 0; i < cards.length; i++) {
-      deck.innerHTML = "";
-      [].forEach.call(cards, function(item) {
-        deck.appendChild(item);
-  });
-    cards[i].classList.remove('show');
-    shownCards.splice(0, 2);
-  }
-}
-}
-
+// Displays card's symbol and pushes shown cards to shownCards array
+ function showCard() {
+   this.classList.toggle('show');
+   shownCards.push(this);
+ };
 
 
 
 // Restart button function
-function restartGame() {
-  const restartButton = document.getElementsByID('button');
-  restartButton.addEventListener('click', function (e) {
-    startGame();
-});
-}
+const restartButton = document.getElementById('restart');
+const clearCards = document.querySelectorAll('.show');
 
-// Event listeners
+function restartGame() {
+  clearCards.forEach(function(e) {
+        e.classList.remove('open', 'show', 'match');
+});
+
+restartButton.addEventListener('click', function(e) {
+    restartGame(e);
+  });
+}
