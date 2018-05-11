@@ -57,7 +57,6 @@ function startGame() {
 // include reset moves, time, star rating???
 }
 
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -76,10 +75,15 @@ function startGame() {
  }
 
 // Displays card's symbol and pushes shown cards to shownCards array
- function showCard() {
+function showCard() {
    this.classList.toggle('show');
-   shownCards.push(this);
- };
+ }
+
+
+
+
+
+
 
 
 // Restart button function
