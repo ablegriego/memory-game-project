@@ -49,11 +49,13 @@ function startGame() {
 });
         cards[i].classList.remove('show', 'match');
     }
-    //include reset moves, time, star rating???
+    shownCards = [];
+    matchCards = [];
+    setTimeout(function() {
+        startGame();
+      }, 5000);
+// include reset moves, time, star rating???
 }
-
-
-
 
 
 /*
@@ -80,17 +82,9 @@ function startGame() {
  };
 
 
-
 // Restart button function
 const restartButton = document.getElementById('restart');
-const clearCards = document.querySelectorAll('.show');
 
-function restartGame() {
-  clearCards.forEach(function(e) {
-        e.classList.remove('open', 'show', 'match');
-});
-
-restartButton.addEventListener('click', function(e) {
-    restartGame(e);
-  });
-}
+restartButton.addEventListener('click', function () {
+    window.location.reload();
+    });
