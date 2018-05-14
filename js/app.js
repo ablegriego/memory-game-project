@@ -3,12 +3,14 @@
  */
 let card = document.getElementsByClassName('card');
 let cards = [...card];
-let shownCards = [];
-let matchCards = [];
-
 // Variables needed for functions
+let shownCard = document.getElementsByClassName('show');
+let shownCardsArray = [];
+let matchCardsArray = [];
 const deck = document.querySelector('.deck');
-const li = document.querySelector('li');
+const li = document.querySelector('.li');
+let moves = 0;
+let moveCount = document.querySelector('.moves');
 
 
 /*
@@ -41,20 +43,18 @@ function shuffle(array) {
 document.body.onload = startGame();
 
 function startGame() {
+
   cards = shuffle(cards);
   for (let i = 0; i < card.length; i++) {
       deck.innerHTML = "";
       [].forEach.call(cards, function(item) {
 	 			deck.appendChild(item);
 });
-        cards[i].classList.remove('show', 'match');
+        cards[i].classList.remove('open', 'show', 'match');
     }
-    shownCards = [];
-    matchCards = [];
-    setTimeout(function() {
-        startGame();
-      }, 5000);
-// include reset moves, time, star rating???
+// Reset moves, time, star rating??
+  moves = 0;
+
 }
 
 /*
@@ -72,16 +72,23 @@ function startGame() {
  for (var i = 0; i < cards.length; i++) {
    card = cards[i];
    card.addEventListener('click', showCard);
+   card.addEventListener('click', moveCounter);
  }
+
 
 // Displays card's symbol and pushes shown cards to shownCards array
 function showCard() {
-   this.classList.toggle('show');
+    this.classList.toggle('open');
+    this.classList.toggle('show');
  }
 
 
 
-
+//Move counter function
+function moveCounter() {
+    moves++
+    moveCount.innerHTML = moves;
+}
 
 
 

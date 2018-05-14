@@ -33,6 +33,20 @@ h1 {
     font-weight: 400;
 }
 
+.fa-star {
+  font-size: 25px;
+}
+.moves {
+    margin: 20px 0 20px 0;
+    font-size: 25px;
+
+}
+.timer {
+    margin: 20px 0 20px 0;
+    text-align: left;
+    font-size: 25px;
+}
+
 /*
  * Styles for the deck of cards
  */
