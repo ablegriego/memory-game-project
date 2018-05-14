@@ -10,7 +10,9 @@ let matchCardsArray = [];
 const deck = document.querySelector('.deck');
 const li = document.querySelector('.li');
 let moves = 0;
+let totalSeconds = 0;
 let moveCount = document.querySelector('.moves');
+let timer = document.querySelector('.timer');
 
 
 /*
@@ -54,7 +56,7 @@ function startGame() {
     }
 // Reset moves, time, star rating??
   moves = 0;
-
+  totalSeconds = 0;
 }
 
 /*
@@ -76,12 +78,6 @@ function startGame() {
  }
 
 
-// Displays card's symbol and pushes shown cards to shownCards array
-function showCard() {
-    this.classList.toggle('open');
-    this.classList.toggle('show');
- }
-
 
 
 //Move counter function
@@ -90,7 +86,26 @@ function moveCounter() {
     moveCount.innerHTML = moves;
 }
 
+//Timer function from https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+let minutesLabel = document.getElementById('minutes');
+let secondsLabel = document.getElementById('seconds');
+setInterval(setTime, 1000);
 
+
+function setTime() {
+  ++totalSeconds;
+  secondsLabel.innerHTML = pad(totalSeconds % 60);
+  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+  let valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
+}
 
 
 // Restart button function
