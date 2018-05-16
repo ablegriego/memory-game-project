@@ -8,11 +8,16 @@ let shownCard = document.getElementsByClassName('show');
 let shownCardsArray = [];
 let matchCardsArray = [];
 const deck = document.querySelector('.deck');
-const li = document.querySelector('.li');
+let li = document.querySelectorAll('.li');
 let moves = 0;
 let totalSeconds = 0;
 let moveCount = document.querySelector('.moves');
 let timer = document.querySelector('.timer');
+let restartButton = document.getElementById('restart');
+let minutesLabel = document.getElementById('minutes');
+let secondsLabel = document.getElementById('seconds');
+let interval = setInterval(startTimer, 1000);
+
 
 
 /*
@@ -33,7 +38,6 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
@@ -41,22 +45,15 @@ function shuffle(array) {
 // Also removes all exisiting classes from cards
 
 //CHANGE TO EVENT LISTENER !!! as per tips
-// deck.addEventListener('click', ... )???
+// deck.addEventListener('click', ... )
 document.body.onload = startGame();
 
 function startGame() {
-
-  cards = shuffle(cards);
-  for (let i = 0; i < card.length; i++) {
-      deck.innerHTML = "";
-      [].forEach.call(cards, function(item) {
-	 			deck.appendChild(item);
-});
-        cards[i].classList.remove('open', 'show', 'match');
-    }
-// Reset moves, time, star rating??
-  moves = 0;
-  totalSeconds = 0;
+    let shuffledCards = shuffle(cards);
+    for (let i = 0; i < shuffledCards.length; i++) {
+         deck.appendChild(shuffledCards[i]);
+         cards[i].classList.remove('open', 'show', 'match', 'disabled');
+     }
 }
 
 /*
@@ -73,29 +70,31 @@ function startGame() {
  // Loop to add event Listener to each card
  for (var i = 0; i < cards.length; i++) {
    card = cards[i];
+   //card.addEventListener('click', startGame); ON LOAD
    card.addEventListener('click', showCard);
    card.addEventListener('click', moveCounter);
+   //card.addEventListener('click', startTimer);
+ }
+//, {once: true}
+
+//Other event listeners (keep out of functions)
+  restartButton.addEventListener('click', restartGame);
+
+
+// Displays card's symbol and pushes shown cards to shownCards array
+function showCard() {
+    this.classList.toggle('open');
+    this.classList.toggle('show');
+    this.classList.toggle('disabled');
  }
 
-
-
-
-//Move counter function
-function moveCounter() {
-    moves++
-    moveCount.innerHTML = moves;
-}
-
 //Timer function from https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
-let minutesLabel = document.getElementById('minutes');
-let secondsLabel = document.getElementById('seconds');
-setInterval(setTime, 1000);
 
-
-function setTime() {
+function startTimer() {
   ++totalSeconds;
   secondsLabel.innerHTML = pad(totalSeconds % 60);
   minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+  clearTime = -1; //Starts timer at 00:00
 }
 
 function pad(val) {
@@ -105,12 +104,25 @@ function pad(val) {
   } else {
     return valString;
   }
+  //card.removeEventListener('click', startTimer);
 }
 
+//Move counter function
+function moveCounter() {
+    moves++;
+    moveCount.innerHTML = moves;
+    }
 
-// Restart button function
-const restartButton = document.getElementById('restart');
+//Restart the game and call reset values function
+function restartGame() {
+      startGame();
+      reset();
+    }
 
-restartButton.addEventListener('click', function () {
-    window.location.reload();
-    });
+//Reset all values
+function reset() {
+  moveCount.innerHTML = 0;
+  moves = 0;
+  totalSeconds = 0;
+  //clearTime = -1; //Starts timer at 00:00 - not working
+  }
