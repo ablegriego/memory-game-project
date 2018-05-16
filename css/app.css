@@ -86,11 +86,26 @@ h1 {
     cursor: default;
 }
 
+.deck .card.unmatched {
+  -webkit-animation-name: shake;
+  animation-name: shake;
+  animation-duration: .75s;
+}
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
     font-size: 40px;
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+    animation-duration: .75s;
+}
+
+.deck .card.disabled {
+  pointer-events: none;
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  animation-duration: .75s;
 }
 
 /*

@@ -16,6 +16,7 @@ let restartButton = document.getElementById('restart');
 let minutesLabel = document.getElementById('minutes');
 let secondsLabel = document.getElementById('seconds');
 let interval = setInterval(startTimer, 1000);
+const stars = document.querySelectorAll(".fa-star");
 
 /*
  * Display the cards on the page
@@ -57,7 +58,6 @@ function startGame() {
  for (var i = 0; i < cards.length; i++) {
    card = cards[i];
    card.addEventListener('click', showCard);
-   card.addEventListener('click', moveCounter);
    card.addEventListener('click', matchCheck);
  }
 
@@ -68,19 +68,21 @@ function startGame() {
 function showCard() {
     this.classList.toggle('open');
     this.classList.toggle('show');
-    this.classList.toggle('disabled');
  }
 
  //Adds shown cards to array and checks if cards match
  function matchCheck() {
    shownCardsArray.push(this);
    let cardLength = shownCardsArray.length;
+   if(cardLength === 2){
+       moveCounter();
      if(shownCardsArray[0].innerHTML === shownCardsArray[1].innerHTML) {
        isMatch();
      } else {
        unMatch();
      }
    }
+ }
 
  //When cards match, card classes change, empties shownCardsArray
  function isMatch() {
