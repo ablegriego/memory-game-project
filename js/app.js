@@ -1,14 +1,13 @@
-/*
- * Create a list that holds all of your cards
- */
+//A list that holds all of the cards
 let card = document.getElementsByClassName('card');
 let cards = [...card];
+
 // Variables needed for functions
 let shownCard = document.getElementsByClassName('show');
-let shownCardsArray = [];
-let matchCardsArray = [];
+var shownCardsArray = [];
+let matchedCard = document.getElementsByClassName('match');
+var matchedCardsArray = [];
 const deck = document.querySelector('.deck');
-let li = document.querySelectorAll('.li');
 let moves = 0;
 let totalSeconds = 0;
 let moveCount = document.querySelector('.moves');
@@ -17,8 +16,6 @@ let restartButton = document.getElementById('restart');
 let minutesLabel = document.getElementById('minutes');
 let secondsLabel = document.getElementById('seconds');
 let interval = setInterval(startTimer, 1000);
-
-
 
 /*
  * Display the cards on the page
@@ -44,7 +41,7 @@ function shuffle(array) {
 // Start Game function to create new HTML
 // Also removes all exisiting classes from cards
 
-//CHANGE TO EVENT LISTENER !!! as per tips
+//CHANGE TO EVENT LISTENER as per tips
 // deck.addEventListener('click', ... )
 document.body.onload = startGame();
 
@@ -56,45 +53,79 @@ function startGame() {
      }
 }
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
- // Loop to add event Listener to each card
+// Loop to add event Listener to each card
  for (var i = 0; i < cards.length; i++) {
    card = cards[i];
-   //card.addEventListener('click', startGame); ON LOAD
    card.addEventListener('click', showCard);
    card.addEventListener('click', moveCounter);
-   //card.addEventListener('click', startTimer);
+   card.addEventListener('click', matchCheck);
  }
-//, {once: true}
 
 //Other event listeners (keep out of functions)
   restartButton.addEventListener('click', restartGame);
 
-
-// Displays card's symbol and pushes shown cards to shownCards array
+//Displays card's symbol
 function showCard() {
     this.classList.toggle('open');
     this.classList.toggle('show');
     this.classList.toggle('disabled');
  }
 
-//Timer function from https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+ //Adds shown cards to array and checks if cards match
+ function matchCheck() {
+   shownCardsArray.push(this);
+   let cardLength = shownCardsArray.length;
+     if(shownCardsArray[0].innerHTML === shownCardsArray[1].innerHTML) {
+       isMatch();
+     } else {
+       unMatch();
+     }
+   }
 
+ //When cards match, card classes change, empties shownCardsArray
+ function isMatch() {
+     shownCardsArray[0].classList.add('match', 'disabled');
+     shownCardsArray[1].classList.add('match', 'disabled');
+     shownCardsArray[0].classList.remove('show', 'open');
+     shownCardsArray[1].classList.remove('show', 'open');
+     shownCardsArray = [];
+ }
+
+ //If cards unMatched, call disableCards function
+ function unMatch() {
+     shownCardsArray[0].classList.add('unmatched');
+     shownCardsArray[1].classList.add('unmatched');
+     disableCards();
+     setTimeout(function(){
+         shownCardsArray[0].classList.remove('show', 'open', 'unmatched');
+         shownCardsArray[1].classList.remove('show', 'open', 'unmatched');
+         enableCards();
+         shownCardsArray = [];
+     },1000);
+ }
+
+//
+function disableCards() {
+  for(var i = 0; i < cards.length; i++){
+    card.classList.add('disabled');
+  }
+}
+
+function enableCards() {
+  for(var i = 0; i < cards.length; i++){
+    card.classList.remove('disabled');
+  }
+
+  for(var i = 0; i < matchedCard.length; i++){
+    matchedCard[i].classList.add('disabled');
+  }
+}
+
+//Timer function from https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
 function startTimer() {
   ++totalSeconds;
   secondsLabel.innerHTML = pad(totalSeconds % 60);
   minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-  clearTime = -1; //Starts timer at 00:00
 }
 
 function pad(val) {
@@ -124,5 +155,6 @@ function reset() {
   moveCount.innerHTML = 0;
   moves = 0;
   totalSeconds = 0;
-  //clearTime = -1; //Starts timer at 00:00 - not working
+  //clearInterval(interval);
+  //clearTime = -1; ?? Starts timer at 00:00 - not working
   }
