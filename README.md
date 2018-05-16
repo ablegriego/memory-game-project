@@ -2,19 +2,18 @@
 
 ## Table of Contents
 
+* [Project Background](
 * [Instructions](#instructions)
-* [Contributing](#contributing)
+
+## Project Background
+
+This project was completed as part of the Udacity Google Scholarship (Phase 2, Project 3).
+Code was pulled from a Udacity repository and amended in line with the project rubric. The starter project had some HTML and CSS styling to display a static version of the Memory Game project. Some modifications were made to the HTNL and CSS files but the predominant assessment was of Javascript skills. 
+
+The coding is all Vanilla JS and manipulates the DOM to provide the functionality.
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Load code. Click on the cards and match the pairs. Once you have revealed a pair if they match they stay facing, if unmatched the cards flip back. Can you remember where the cards are and match them up? See how fast you can find the eight pairs and beat your time. 
 
-To get started, open `js/app.js` and start building out the app's functionality
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
