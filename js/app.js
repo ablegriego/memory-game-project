@@ -3,10 +3,8 @@ let card = document.getElementsByClassName('card');
 let cards = [...card];
 
 // Variables needed for functions
-let shownCard = document.getElementsByClassName('show');
 var shownCardsArray = [];
 let matchedCard = document.getElementsByClassName('match');
-var matchedCardsArray = [];
 const deck = document.querySelector('.deck');
 let moves = 0;
 let totalSeconds = 0;
@@ -16,8 +14,8 @@ let restartButton = document.getElementById('restart');
 let minutesLabel = document.getElementById('minutes');
 let secondsLabel = document.getElementById('seconds');
 let interval = setInterval(startTimer, 1000);
-const stars = document.querySelectorAll(".fa-star");
-
+let stars = document.querySelectorAll('.fa-star');
+let closeButton = document.getElementById('closeModal');
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -46,6 +44,7 @@ function shuffle(array) {
 // deck.addEventListener('click', ... )
 document.body.onload = startGame();
 
+//
 function startGame() {
     let shuffledCards = shuffle(cards);
     for (let i = 0; i < shuffledCards.length; i++) {
@@ -59,10 +58,12 @@ function startGame() {
    card = cards[i];
    card.addEventListener('click', showCard);
    card.addEventListener('click', matchCheck);
+   card.addEventListener('click', congratsModal);
  }
 
 //Other event listeners (keep out of functions)
   restartButton.addEventListener('click', restartGame);
+  closeButton.addEventListener('click', closeModal);
 
 //Displays card's symbol
 function showCard() {
@@ -103,7 +104,7 @@ function showCard() {
          shownCardsArray[1].classList.remove('show', 'open', 'unmatched');
          enableCards();
          shownCardsArray = [];
-     },1000);
+     },900);
  }
 
 //
@@ -148,8 +149,8 @@ function moveCounter() {
 
 //Restart the game and call reset values function
 function restartGame() {
-      startGame();
       reset();
+      startGame();
     }
 
 //Reset all values
@@ -157,6 +158,51 @@ function reset() {
   moveCount.innerHTML = 0;
   moves = 0;
   totalSeconds = 0;
-  //clearInterval(interval);
-  //clearTime = -1; ?? Starts timer at 00:00 - not working
+  //reset stars
   }
+
+//Stars rating functions...
+
+
+
+//Congratulations modal
+var modal = document.getElementById('myModal');
+
+//If 16 matched cards, display modal
+function congratsModal() {
+  if(matchedCard.length === 16){
+    clearInterval(interval);
+    modal.style.display = 'block';
+    let finalTime = timer.innerHTML;
+    let finalStars = document.querySelector('.stars').innerHTML;
+    let finalMoves = document.querySelector('.moves').innerHTML;
+    let starRating = document.querySelector('.stars').innerHTML;
+    //Values to display on modal
+    document.getElementById('finalMoves').innerHTML = finalMoves;
+    document.getElementById('finalStars').innerHTML = finalStars;
+    document.getElementById('finalTime').innerHTML = finalTime;
+    reset();
+    }
+}
+
+//Get the <span> element that closes the modal
+let span = document.getElementsByClassName('close')[0];
+
+//When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+   modal.style.display = 'none';
+   restartGame();
+};
+
+//When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+   if (event.target == modal) {
+       modal.style.display = 'none';
+       restartGame();
+   }
+};
+
+function closeModal() {
+  modal.style.display = 'none';
+  restartGame();
+}
