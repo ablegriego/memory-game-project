@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-* [Project Background](
+* [Project Background](#projectbackground)
 * [Instructions](#instructions)
 
 ## Project Background
