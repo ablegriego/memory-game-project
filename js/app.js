@@ -149,7 +149,6 @@ function moveCounter() {
 
 //Restart the game and call reset values function
 function restartGame() {
-      reset();
       startGame();
     }
 
@@ -158,6 +157,7 @@ function reset() {
   moveCount.innerHTML = 0;
   moves = 0;
   totalSeconds = 0;
+  startTimer();
   //reset stars
   }
 
@@ -181,7 +181,6 @@ function congratsModal() {
     document.getElementById('finalMoves').innerHTML = finalMoves;
     document.getElementById('finalStars').innerHTML = finalStars;
     document.getElementById('finalTime').innerHTML = finalTime;
-    reset();
     }
 }
 
@@ -191,18 +190,21 @@ let span = document.getElementsByClassName('close')[0];
 //When the user clicks on <span> (x), close the modal
 span.onclick = function() {
    modal.style.display = 'none';
-   restartGame();
+   window.location.reload();
 };
 
 //When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
    if (event.target == modal) {
        modal.style.display = 'none';
-       restartGame();
+       window.location.reload();
    }
 };
 
+//Modal play again button
 function closeModal() {
-  modal.style.display = 'none';
-  restartGame();
+  closeButton.addEventListener('click' , function(e){
+    modal.style.display = 'none';
+    window.location.reload();
+  });
 }
