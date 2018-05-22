@@ -14,7 +14,6 @@ let restartButton = document.getElementById('restart');
 let minutesLabel = document.getElementById('minutes');
 let secondsLabel = document.getElementById('seconds');
 let interval = setInterval(startTimer, 1000);
-let stars = document.querySelectorAll('.fa-star');
 let closeButton = document.getElementById('closeModal');
 /*
  * Display the cards on the page
@@ -104,7 +103,7 @@ function showCard() {
          shownCardsArray[1].classList.remove('show', 'open', 'unmatched');
          enableCards();
          shownCardsArray = [];
-     },900);
+     },1000);
  }
 
 //
@@ -141,16 +140,38 @@ function pad(val) {
   //card.removeEventListener('click', startTimer);
 }
 
-//Move counter function
+//let stars = document.getElementsByClassName('stars');
+//let starOne = document.getElementById('star1');
+//let starTwo = document.getElementById('star2');
+//let starThree = document.getElementById('star3');
+
+let stars = document.getElementById('stars');
+//Move counter function and star rating
+
 function moveCounter() {
     moves++;
     moveCount.innerHTML = moves;
+    if ((moves > 10) && (moves < 20)) {
+      //removes star2
+      stars.removeChild(stars.childNodes[2]);
+            }
+    if (moves >= 20) {
+      //removes star1 where 1 and 3 left
+      stars.removeChild(stars.childNodes[1]);
     }
+}
+
 
 //Restart the game and call reset values function
 function restartGame() {
+      reset();
       startGame();
     }
+
+//let stars = document.getElementsByClassName('stars');
+let starOne = document.getElementById('star1');
+let starTwo = document.getElementById('star2');
+let starThree = document.getElementById('star3');
 
 //Reset all values
 function reset() {
@@ -159,10 +180,10 @@ function reset() {
   totalSeconds = 0;
   startTimer();
   //reset stars
+  stars.appendChild(starOne);
+  stars.appendChild(starTwo);
+  stars.appendChild(starThree);
   }
-
-//Stars rating functions...
-
 
 
 //Congratulations modal
