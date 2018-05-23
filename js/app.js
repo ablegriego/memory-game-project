@@ -38,10 +38,8 @@ function shuffle(array) {
 
 // Start Game function to create new HTML
 // Also removes all exisiting classes from cards
-
 document.body.onload = startGame();
 
-//
 function startGame() {
     let shuffledCards = shuffle(cards);
     for (let i = 0; i < shuffledCards.length; i++) {
@@ -104,7 +102,7 @@ function showCard() {
      },500);
  }
 
-//
+//Disables and Enable card functions
 function disableCards() {
   for(var i = 0; i < cards.length; i++){
     card.classList.add('disabled');
@@ -137,22 +135,19 @@ function pad(val) {
   }
 }
 
-let stars = document.getElementById('stars');
 //Move counter function and star rating
+let stars = document.getElementById('stars');
 
 function moveCounter() {
     moves++;
     moveCount.innerHTML = moves;
     if ((moves > 10) && (moves < 20)) {
-      //removes star2
       stars.removeChild(stars.childNodes[2]);
             }
     if (moves >= 20) {
-      //removes star1 where 1 and 3 left
       stars.removeChild(stars.childNodes[1]);
     }
 }
-
 
 //Restart the game and call reset values function
 function restartGame() {
@@ -160,7 +155,7 @@ function restartGame() {
       startGame();
     }
 
-//let stars = document.getElementsByClassName('stars');
+//Variables for resetting stars
 let starOne = document.getElementById('star1');
 let starTwo = document.getElementById('star2');
 let starThree = document.getElementById('star3');
