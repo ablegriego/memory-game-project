@@ -39,8 +39,6 @@ function shuffle(array) {
 // Start Game function to create new HTML
 // Also removes all exisiting classes from cards
 
-//CHANGE TO EVENT LISTENER as per tips
-// deck.addEventListener('click', ... )
 document.body.onload = startGame();
 
 //
@@ -103,7 +101,7 @@ function showCard() {
          shownCardsArray[1].classList.remove('show', 'open', 'unmatched');
          enableCards();
          shownCardsArray = [];
-     },1000);
+     },900);
  }
 
 //
@@ -137,13 +135,7 @@ function pad(val) {
   } else {
     return valString;
   }
-  //card.removeEventListener('click', startTimer);
 }
-
-//let stars = document.getElementsByClassName('stars');
-//let starOne = document.getElementById('star1');
-//let starTwo = document.getElementById('star2');
-//let starThree = document.getElementById('star3');
 
 let stars = document.getElementById('stars');
 //Move counter function and star rating
@@ -197,7 +189,6 @@ function congratsModal() {
     let finalTime = timer.innerHTML;
     let finalStars = document.querySelector('.stars').innerHTML;
     let finalMoves = document.querySelector('.moves').innerHTML;
-    let starRating = document.querySelector('.stars').innerHTML;
     //Values to display on modal
     document.getElementById('finalMoves').innerHTML = finalMoves;
     document.getElementById('finalStars').innerHTML = finalStars;

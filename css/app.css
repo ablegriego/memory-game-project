@@ -87,6 +87,7 @@ h1 {
 	background: #02b3e4;
 	font-size: 33px;
 	cursor: default;
+  pointer-events: none;
 }
 
 .deck .card.open {
