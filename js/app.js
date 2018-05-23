@@ -80,7 +80,7 @@ function showCard() {
        unMatch();
      }
    }
- }
+}
 
  //When cards match, card classes change, empties shownCardsArray
  function isMatch() {
@@ -101,7 +101,7 @@ function showCard() {
          shownCardsArray[1].classList.remove('show', 'open', 'unmatched');
          enableCards();
          shownCardsArray = [];
-     },900);
+     },500);
  }
 
 //

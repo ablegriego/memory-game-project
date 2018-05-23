@@ -93,13 +93,14 @@ h1 {
 .deck .card.open {
 	-webkit-animation-name: flipInX;
 	animation-name: flipInX;
-	animation-duration: .7s;
+	animation-duration: .85s;
 }
 
 .deck .card.unmatched {
 	-webkit-animation-name: shake;
 	animation-name: shake;
-	animation-duration: .7s;
+  animation-delay: 0.30s;
+	animation-duration: 0.9s;
 }
 
 .deck .card.match {
@@ -108,7 +109,7 @@ h1 {
 	font-size: 40px;
 	-webkit-animation-name: pulse;
 	animation-name: pulse;
-	animation-duration: .7s;
+	animation-duration: .85s;
 }
 
 .deck .card.disabled {
