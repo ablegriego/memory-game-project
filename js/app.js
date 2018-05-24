@@ -2,18 +2,23 @@
 let card = document.getElementsByClassName('card');
 let cards = [...card];
 
-// Variables needed for functions
+// Variables for card functions
 let shownCardsArray = [];
 let matchedCard = document.getElementsByClassName('match');
 const deck = document.querySelector('.deck');
+//Variables for restart Button
+let restartButton = document.getElementById('restart');
+//Variables for move counter
 let moves = 0;
+let moveCount = document.querySelector('.moves');
+// Variables for time
 let totalSeconds = 0;
 let timer = document.querySelector('.timer');
-let restartButton = document.getElementById('restart');
 let minutesLabel = document.getElementById('minutes');
 let secondsLabel = document.getElementById('seconds');
 let interval = setInterval(startTimer, 1000);
-// Variables for resetting stars
+// Variables for stars
+let stars = document.getElementById('stars');
 let starOne = document.getElementById('star1');
 let starTwo = document.getElementById('star2');
 let starThree = document.getElementById('star3');
@@ -140,16 +145,14 @@ function pad(val) {
 }
 
 //Move counter function and star rating
-let stars = document.getElementById('stars');
-
 function moveCounter() {
     moves++;
     moveCount.innerHTML = moves;
     if ((moves > 10) && (moves < 20)) {
-      document.getElementById("star3").className = "hidden";
+      document.getElementById("star3").style.visibility = "hidden";
             }
     if (moves >= 20) {
-      document.getElementById("star2").className = "hidden";
+      document.getElementById("star2").style.visibility = "hidden";
     }
 }
 
