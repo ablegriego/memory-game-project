@@ -371,3 +371,38 @@ h1 {
   font-weight: bold;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+/* Media queries for more responsive design */
+@media screen and (max-width: 650px) {
+  .score-panel {
+    width: 300px;
+    font-size: 11px;
+  }
+
+  .deck {
+    width: 300px;
+    min-height: 310px;
+  }
+
+  .deck .card {
+    width: 55px;
+    height: 55px;
+  }
+
+  .deck .card.show {
+    font-size: 23px;
+  }
+
+  .deck .card.match {
+    font-size: 25px;
+  }
+
+  .modal-content {
+    width: 90%;
+    font-size: 9px;
+  }
+
+  #finalStars {
+    font-size: 7px;
+  }
+}
