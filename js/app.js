@@ -167,11 +167,10 @@ function reset() {
   moveCount.innerHTML = 0;
   moves = 0;
   totalSeconds = 0;
-  startTimer();
+  setInterval(interval);
   //reset stars
-  stars.appendChild(starOne);
-  stars.appendChild(starTwo);
-  stars.appendChild(starThree);
+  starThree.style.visibility = "visible";
+  starTwo.style.visibility = "visible";
   }
 
 
@@ -212,7 +211,7 @@ window.onclick = function(event) {
 
 //Modal play again button
 function closeModal() {
-  closeButton.addEventListener('click' , function(e){
+  closeButton.addEventListener('click', function(e){
     modal.style.display = 'none';
     window.location.reload();
   });
