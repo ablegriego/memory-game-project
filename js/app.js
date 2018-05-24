@@ -2,19 +2,23 @@
 let card = document.getElementsByClassName('card');
 let cards = [...card];
 
-// Variables needed for functions
+//Variables needed for functions
 let shownCardsArray = [];
 let matchedCard = document.getElementsByClassName('match');
 const deck = document.querySelector('.deck');
 let moves = 0;
 let totalSeconds = 0;
-let moveCount = document.querySelector('.moves');
 let timer = document.querySelector('.timer');
 let restartButton = document.getElementById('restart');
 let minutesLabel = document.getElementById('minutes');
 let secondsLabel = document.getElementById('seconds');
 let interval = setInterval(startTimer, 1000);
+// Variables for resetting stars
+let starOne = document.getElementById('star1');
+let starTwo = document.getElementById('star2');
+let starThree = document.getElementById('star3');
 let closeButton = document.getElementById('closeModal');
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -50,10 +54,10 @@ function startGame() {
 
 // Loop to add event Listener to each card
  for (let i = 0; i < cards.length; i++) {
-   card = cards[i];
-   card.addEventListener('click', showCard);
-   card.addEventListener('click', matchCheck);
-   card.addEventListener('click', congratsModal);
+   let eachCard = cards[i];
+   eachCard.addEventListener('click', showCard);
+   eachCard.addEventListener('click', matchCheck);
+   eachCard.addEventListener('click', congratsModal);
  }
 
 //Other event listeners (keep out of functions)
@@ -105,13 +109,13 @@ function showCard() {
 //Disables and Enable card functions
 function disableCards() {
   for(let i = 0; i < cards.length; i++){
-    card.classList.add('disabled');
+    cards[i].classList.add('disabled');
   }
 }
 
 function enableCards() {
   for(let i = 0; i < cards.length; i++){
-    card.classList.remove('disabled');
+    cards[i].classList.remove('disabled');
   }
 
   for(let i = 0; i < matchedCard.length; i++){
@@ -154,11 +158,6 @@ function restartGame() {
       reset();
       startGame();
     }
-
-//Variables for resetting stars
-let starOne = document.getElementById('star1');
-let starTwo = document.getElementById('star2');
-let starThree = document.getElementById('star3');
 
 //Reset all values
 function reset() {
