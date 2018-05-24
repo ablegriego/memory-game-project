@@ -2,7 +2,7 @@
 let card = document.getElementsByClassName('card');
 let cards = [...card];
 
-//Variables needed for functions
+// Variables needed for functions
 let shownCardsArray = [];
 let matchedCard = document.getElementsByClassName('match');
 const deck = document.querySelector('.deck');
@@ -146,10 +146,10 @@ function moveCounter() {
     moves++;
     moveCount.innerHTML = moves;
     if ((moves > 10) && (moves < 20)) {
-      stars.removeChild(stars.childNodes[2]);
+      document.getElementById("star3").className = "hidden";
             }
     if (moves >= 20) {
-      stars.removeChild(stars.childNodes[1]);
+      document.getElementById("star2").className = "hidden";
     }
 }
 
@@ -181,7 +181,7 @@ function congratsModal() {
     clearInterval(interval);
     modal.style.display = 'block';
     let finalTime = timer.innerHTML;
-    let finalStars = document.querySelector('.stars').innerHTML;
+    let finalStars = document.querySelector('#stars').innerHTML;
     let finalMoves = document.querySelector('.moves').innerHTML;
     //Values to display on modal
     document.getElementById('finalMoves').innerHTML = finalMoves;
