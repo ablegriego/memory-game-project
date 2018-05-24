@@ -3,7 +3,7 @@ let card = document.getElementsByClassName('card');
 let cards = [...card];
 
 // Variables needed for functions
-var shownCardsArray = [];
+let shownCardsArray = [];
 let matchedCard = document.getElementsByClassName('match');
 const deck = document.querySelector('.deck');
 let moves = 0;
@@ -24,7 +24,7 @@ let closeButton = document.getElementById('closeModal');
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -49,7 +49,7 @@ function startGame() {
 }
 
 // Loop to add event Listener to each card
- for (var i = 0; i < cards.length; i++) {
+ for (let i = 0; i < cards.length; i++) {
    card = cards[i];
    card.addEventListener('click', showCard);
    card.addEventListener('click', matchCheck);
@@ -104,17 +104,17 @@ function showCard() {
 
 //Disables and Enable card functions
 function disableCards() {
-  for(var i = 0; i < cards.length; i++){
+  for(let i = 0; i < cards.length; i++){
     card.classList.add('disabled');
   }
 }
 
 function enableCards() {
-  for(var i = 0; i < cards.length; i++){
+  for(let i = 0; i < cards.length; i++){
     card.classList.remove('disabled');
   }
 
-  for(var i = 0; i < matchedCard.length; i++){
+  for(let i = 0; i < matchedCard.length; i++){
     matchedCard[i].classList.add('disabled');
   }
 }
@@ -174,7 +174,7 @@ function reset() {
 
 
 //Congratulations modal
-var modal = document.getElementById('myModal');
+let modal = document.getElementById('myModal');
 
 //If 16 matched cards, display modal
 function congratsModal() {
